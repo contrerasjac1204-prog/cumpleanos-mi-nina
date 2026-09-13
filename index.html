@@ -340,28 +340,53 @@ button{
 ========================= */
 
 .spotify-box{
-  margin:22px auto 0;
+  margin:28px auto 0;
   width:min(100%,520px);
-  display:none;
-}
-
-.spotify-box.show{
-  display:block;
-  animation:fadeUp .6s ease both;
+  padding:22px 16px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:22px;
+  background:rgba(255,255,255,.045);
+  text-align:center;
+  animation:fadeUp .7s ease both;
 }
 
 .spotify-label{
-  font-size:11px;
-  color:#bbaab5;
-  margin-bottom:10px;
-  letter-spacing:1px;
+  color:#ffd1e2;
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;
+  line-height:1.25;
+  margin-bottom:8px;
 }
 
-.spotify-frame{
-  width:100%;
-  height:152px;
-  border:0;
-  border-radius:14px;
+.spotify-subtitle{
+  color:#bcaeb7;
+  font-size:12px;
+  margin-bottom:18px;
+}
+
+.spotify-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:14px 22px;
+  border-radius:999px;
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  background:linear-gradient(135deg,#1ed760,#159447);
+  box-shadow:0 10px 30px rgba(30,215,96,.2);
+  transition:.25s ease;
+}
+
+.spotify-button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 40px rgba(30,215,96,.3);
+}
+
+.spotify-button:active{
+  transform:scale(.96);
 }
 
 /* =========================
@@ -1093,27 +1118,6 @@ function launchConfetti(){
    SPOTIFY
 ========================================== */
 
-const spotifyBox =
-  document.getElementById("spotifyBox");
-
-const spotify =
-  document.getElementById("spotify");
-
-const spotifyURL =
-  "https://open.spotify.com/embed/track/2dMrr6HYgfrPRMOdHtEKKY?utm_source=generator&theme=0";
-
-let spotifyLoaded = false;
-
-function loadSpotify(){
-
-  if(spotifyLoaded) return;
-
-  spotifyLoaded = true;
-
-  spotify.src = spotifyURL;
-
-  spotifyBox.classList.add("show");
-}
 
 
 /* ==========================================
@@ -1123,12 +1127,9 @@ function loadSpotify(){
 document.getElementById("startBtn")
 .addEventListener("click",()=>{
 
-  loadSpotify();
-
   showScreen(screens.letter);
 
 });
-
 
 /* ==========================================
    IR A RAZONES
