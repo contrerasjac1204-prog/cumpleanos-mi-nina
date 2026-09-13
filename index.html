@@ -2,1064 +2,754 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0d0912">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-<title>Una pequeña sorpresa para ti ❤️</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08050a">
+<title>Feliz cumpleaños, mi niña ❤️</title>
 
 <style>
-:root{
-  --bg:#0d0912;
-  --card:rgba(34,20,43,.82);
-  --line:rgba(255,255,255,.14);
-  --white:#fff8fc;
-  --soft:#e8dce7;
-  --pink:#ff9dca;
-  --pink2:#ff4fb3;
-  --purple:#b477ff;
-  --green:#1ed760;
-  --shadow:0 25px 70px rgba(0,0,0,.48);
-}
-
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  min-height:100vh;
-  overflow-x:hidden;
-  background:
-    radial-gradient(circle at 15% 15%,rgba(255,83,170,.14),transparent 27%),
-    radial-gradient(circle at 85% 30%,rgba(155,86,255,.13),transparent 29%),
-    radial-gradient(circle at 50% 90%,rgba(255,60,160,.08),transparent 30%),
-    var(--bg);
-  color:var(--white);
-  font-family:'Montserrat',sans-serif;
-  -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    overflow:hidden;
+    font-family:Georgia,"Times New Roman",serif;
+    color:#fff;
+    background:#08050a;
 }
 
-/* ESTRELLAS DEL FONDO */
 body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:1;
-  opacity:.22;
-  background-image:
-    radial-gradient(circle,white 1px,transparent 1.5px),
-    radial-gradient(circle,white 1px,transparent 1.5px);
-  background-size:87px 113px,137px 181px;
-  background-position:20px 30px,70px 90px;
-  animation:starsDrift 18s linear infinite;
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    background:
+        radial-gradient(circle at 50% 25%,rgba(255,70,130,.18),transparent 35%),
+        radial-gradient(circle at 15% 80%,rgba(170,20,80,.12),transparent 35%),
+        radial-gradient(circle at 85% 70%,rgba(255,40,100,.08),transparent 35%),
+        linear-gradient(180deg,#08050a,#15070f 55%,#070408);
 }
 
-@keyframes starsDrift{
-  from{
-    transform:translateY(0);
-  }
-  to{
-    transform:translateY(-35px);
-  }
+/* =========================
+   ESTRELLAS
+========================= */
+
+#stars{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
 }
 
-/* PARTICULAS */
-#particles{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:20;
-  overflow:hidden;
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 0 7px #fff;
+    animation:twinkle 2s infinite ease-in-out;
 }
 
-.heart-particle{
-  position:absolute;
-  bottom:-50px;
-  opacity:0;
-  animation:floatHeart linear forwards;
-  filter:drop-shadow(0 0 9px rgba(255,100,180,.58));
-  user-select:none;
+@keyframes twinkle{
+    0%,100%{
+        opacity:.15;
+        transform:scale(.7);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.6);
+    }
+}
+
+/* =========================
+   CORAZONES
+========================= */
+
+#hearts{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:1;
+}
+
+.heart{
+    position:absolute;
+    bottom:-40px;
+    color:#ff477e;
+    font-size:18px;
+    opacity:0;
+    filter:drop-shadow(0 0 7px rgba(255,50,120,.8));
+    animation:floatHeart linear forwards;
 }
 
 @keyframes floatHeart{
-  0%{
-    transform:translateY(0) translateX(0) scale(.5) rotate(0);
-    opacity:0;
-  }
 
-  10%{
-    opacity:.85;
-  }
+    0%{
+        transform:translateY(0) translateX(0) rotate(0deg) scale(.6);
+        opacity:0;
+    }
 
-  78%{
-    opacity:.55;
-  }
+    10%{
+        opacity:.75;
+    }
 
-  100%{
-    transform:
-      translateY(-118vh)
-      translateX(var(--drift))
-      scale(1.18)
-      rotate(25deg);
-    opacity:0;
-  }
+    50%{
+        transform:translateY(-55vh) translateX(20px) rotate(15deg) scale(1);
+    }
+
+    100%{
+        transform:translateY(-115vh) translateX(-25px) rotate(30deg) scale(1.25);
+        opacity:0;
+    }
 }
 
-.spark{
-  position:absolute;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:#fff;
-  box-shadow:0 0 12px 4px rgba(255,180,225,.8);
-  animation:sparkle 2.5s ease-in-out infinite;
+/* =========================
+   APP
+========================= */
+
+#app{
+    width:100%;
+    min-height:100vh;
+    position:relative;
+    z-index:2;
 }
 
-@keyframes sparkle{
-  0%,100%{
-    opacity:.12;
-    transform:scale(.5);
-  }
-
-  50%{
-    opacity:1;
-    transform:scale(1.55);
-  }
-}
-
-/* PANTALLAS */
 .screen{
-  display:none;
-  min-height:100vh;
-  width:100%;
-  padding:30px 18px 52px;
-  position:relative;
-  z-index:2;
+    display:none;
+    width:100%;
+    height:100vh;
+    min-height:100vh;
+    padding:30px 18px;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    overflow-y:auto;
 }
 
 .screen.active{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  animation:screenIn .8s cubic-bezier(.2,.8,.2,1) both;
+    display:flex;
+    animation:screenEnter .8s cubic-bezier(.2,.8,.2,1);
 }
 
-@keyframes screenIn{
-  from{
-    opacity:0;
-    transform:translateY(30px) scale(.975);
-    filter:blur(7px);
-  }
+@keyframes screenEnter{
+    from{
+        opacity:0;
+        transform:scale(.96) translateY(18px);
+    }
 
-  to{
-    opacity:1;
-    transform:none;
-    filter:blur(0);
-  }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
 }
 
-.container{
-  width:min(680px,100%);
-  margin:auto;
-}
+/* =========================
+   TEXTOS
+========================= */
 
-/* TARJETAS */
-.card{
-  position:relative;
-  width:100%;
-  padding:34px 26px;
-  border:1px solid var(--line);
-  border-radius:30px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(48,27,59,.84),
-      rgba(20,12,28,.89)
-    );
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  overflow:hidden;
-}
-
-.card::before{
-  content:"";
-  position:absolute;
-  width:200px;
-  height:200px;
-  right:-80px;
-  top:-90px;
-  border-radius:50%;
-  background:rgba(255,87,177,.13);
-  filter:blur(32px);
-  animation:orb 6s ease-in-out infinite;
-  pointer-events:none;
-}
-
-.card::after{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  left:-90px;
-  bottom:-80px;
-  border-radius:50%;
-  background:rgba(160,90,255,.11);
-  filter:blur(32px);
-  animation:orb 7s ease-in-out infinite reverse;
-  pointer-events:none;
-}
-
-@keyframes orb{
-  0%,100%{
-    transform:scale(1);
-    opacity:.65;
-  }
-
-  50%{
-    transform:scale(1.3);
-    opacity:1;
-  }
-}
-
-.center{
-  text-align:center;
-}
-
-h1,h2,h3,.serif{
-  font-family:'Cormorant Garamond',serif;
-}
-
-/* PORTADA */
 .eyebrow{
-  color:var(--pink);
-  font-size:.76rem;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  font-weight:600;
-  margin-bottom:14px;
-  animation:fadeUp .8s .15s both;
+    margin-bottom:24px;
+    color:#ffabc6;
+    font-size:10px;
+    letter-spacing:4px;
+    animation:fadeUp 1.2s ease both;
 }
 
-h1{
-  font-size:clamp(2.6rem,12vw,5rem);
-  line-height:.92;
-  font-weight:600;
-  text-shadow:0 0 35px rgba(255,125,194,.2);
-  animation:fadeUp .8s .28s both;
+.title{
+    margin-bottom:22px;
+    font-size:clamp(30px,8vw,52px);
+    line-height:1.1;
 }
 
-.hero-27{
-  display:block;
-  font-size:clamp(6.2rem,32vw,13rem);
-  line-height:.72;
-  margin:28px 0 25px;
-  background:linear-gradient(
-    135deg,
-    #fff,
-    #ffb4d9 45%,
-    #c78cff
-  );
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  filter:drop-shadow(0 0 25px rgba(255,100,190,.3));
-  animation:
-    heroNumber 1.5s cubic-bezier(.17,.84,.44,1) both,
-    numberPulse 3s 1.5s ease-in-out infinite;
-}
-
-@keyframes heroNumber{
-  from{
-    opacity:0;
-    transform:scale(.35) rotate(-8deg);
-    filter:blur(18px);
-  }
-
-  60%{
-    opacity:1;
-    transform:scale(1.08) rotate(2deg);
-  }
-
-  to{
-    transform:scale(1) rotate(0);
-  }
-}
-
-@keyframes numberPulse{
-  0%,100%{
-    filter:drop-shadow(0 0 20px rgba(255,100,190,.25));
-  }
-
-  50%{
-    filter:drop-shadow(0 0 45px rgba(255,100,190,.65));
-  }
+.section-label{
+    margin-bottom:14px;
+    color:#ff9cba;
+    font-size:10px;
+    letter-spacing:4px;
 }
 
 .subtitle{
-  color:var(--soft);
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.45rem,6vw,2.2rem);
-  line-height:1.15;
-  animation:fadeUp .8s .42s both;
+    margin-top:28px;
+    color:#ffd5e2;
+    font-size:clamp(18px,5vw,28px);
+    animation:fadeUp 1.5s .5s both;
 }
 
-.small-note{
-  color:rgba(255,255,255,.62);
-  font-size:.82rem;
-  line-height:1.7;
-  margin-top:18px;
-  animation:fadeUp .8s .56s both;
+.intro-text{
+    max-width:420px;
+    margin:22px auto 28px;
+    color:#d8bfc8;
+    font-size:15px;
+    line-height:1.7;
+    animation:fadeUp 1.5s .8s both;
 }
 
 @keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
 
-  to{
-    opacity:1;
-    transform:none;
-  }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-/* BOTONES */
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-  border:0;
-  border-radius:999px;
-  padding:16px 24px;
-  min-height:54px;
-  color:white;
-  background:linear-gradient(
-    135deg,
-    #ff4fae,
-    #b64fff
-  );
-  font-family:'Montserrat',sans-serif;
-  font-weight:700;
-  font-size:.92rem;
-  text-decoration:none;
-  cursor:pointer;
-  box-shadow:0 12px 30px rgba(255,55,170,.25);
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    filter .25s ease;
-  position:relative;
-  z-index:3;
-  -webkit-tap-highlight-color:transparent;
+/* =========================
+   27
+========================= */
+
+.number27{
+    font-size:clamp(120px,38vw,210px);
+    line-height:.8;
+    font-weight:bold;
+    color:#fff;
+    text-shadow:
+        0 0 12px rgba(255,110,160,.9),
+        0 0 35px rgba(255,40,110,.75),
+        0 0 80px rgba(255,0,80,.4);
+    animation:numberEntrance 1.8s cubic-bezier(.2,.8,.2,1);
 }
 
-.btn::after{
-  content:"";
-  position:absolute;
-  inset:2px;
-  border-radius:inherit;
-  border:1px solid rgba(255,255,255,.2);
-  pointer-events:none;
+@keyframes numberEntrance{
+    0%{
+        opacity:0;
+        transform:scale(.2);
+        filter:blur(18px);
+    }
+
+    55%{
+        opacity:1;
+        transform:scale(1.13);
+        filter:blur(0);
+    }
+
+    75%{
+        transform:scale(.96);
+    }
+
+    100%{
+        transform:scale(1);
+    }
 }
 
-.btn:hover{
-  transform:translateY(-3px) scale(1.02);
-  box-shadow:0 18px 40px rgba(255,55,170,.4);
-  filter:brightness(1.08);
+/* =========================
+   BOTONES
+========================= */
+
+button{
+    border:0;
+    font-family:inherit;
+    cursor:pointer;
 }
 
-.btn:active{
-  transform:scale(.96);
+.main-button{
+    padding:16px 29px;
+    border-radius:50px;
+    color:#fff;
+    font-size:15px;
+    background:linear-gradient(135deg,#ff477e,#bd164e);
+    box-shadow:
+        0 0 20px rgba(255,50,110,.35),
+        0 10px 30px rgba(0,0,0,.4);
+    animation:pulseButton 2.5s infinite;
+    transition:.3s;
 }
 
-.btn-main{
-  margin-top:30px;
-  animation:buttonGlow 2.2s ease-in-out infinite;
+.main-button:active{
+    transform:scale(.96);
 }
 
-@keyframes buttonGlow{
-  0%,100%{
-    box-shadow:0 12px 30px rgba(255,55,170,.22);
-  }
+@keyframes pulseButton{
+    0%,100%{
+        box-shadow:0 0 20px rgba(255,50,110,.3);
+    }
 
-  50%{
-    box-shadow:0 12px 45px rgba(255,55,170,.58);
-  }
+    50%{
+        box-shadow:
+            0 0 38px rgba(255,50,110,.7),
+            0 0 70px rgba(255,20,90,.2);
+    }
 }
 
-.top-heart{
-  display:block;
-  font-size:2rem;
-  margin-bottom:8px;
-  animation:heartbeat 1.5s ease-in-out infinite;
+.hint{
+    margin-top:13px;
+    color:#8e747e;
+    font-size:10px;
 }
 
-@keyframes heartbeat{
-  0%,100%{
-    transform:scale(1);
-  }
-
-  15%{
-    transform:scale(1.22);
-  }
-
-  30%{
-    transform:scale(1);
-  }
-
-  45%{
-    transform:scale(1.12);
-  }
-}
-
-/* CARTA */
-.letter-card{
-  animation:letterOpen 1.1s cubic-bezier(.16,1,.3,1) both;
-}
-
-@keyframes letterOpen{
-  from{
-    opacity:0;
-    transform:translateY(50px) rotateX(10deg) scale(.94);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-.letter-title{
-  font-size:clamp(2.2rem,9vw,3.5rem);
-  color:var(--pink);
-  margin-bottom:25px;
-}
+/* =========================
+   CARTA
+========================= */
 
 .letter{
-  color:#f5eaf2;
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.35rem,5.8vw,1.8rem);
-  line-height:1.5;
+    width:100%;
+    max-width:510px;
+    padding:27px 21px;
+    text-align:left;
+    border:1px solid rgba(255,160,190,.18);
+    border-radius:24px;
+    background:rgba(255,255,255,.045);
+    backdrop-filter:blur(12px);
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+    animation:letterReveal 1.3s ease both;
+}
+
+@keyframes letterReveal{
+    0%{
+        opacity:0;
+        transform:translateY(35px) scale(.96);
+        clip-path:inset(0 0 100% 0);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        clip-path:inset(0 0 0 0);
+    }
 }
 
 .letter p{
-  margin-bottom:24px;
-  opacity:0;
-  animation:lineReveal .8s ease forwards;
-}
-
-.letter p:nth-child(1){animation-delay:.15s}
-.letter p:nth-child(2){animation-delay:.30s}
-.letter p:nth-child(3){animation-delay:.45s}
-.letter p:nth-child(4){animation-delay:.60s}
-.letter p:nth-child(5){animation-delay:.75s}
-.letter p:nth-child(6){animation-delay:.90s}
-.letter p:nth-child(7){animation-delay:1.05s}
-.letter p:nth-child(8){animation-delay:1.20s}
-
-@keyframes lineReveal{
-  from{
-    opacity:0;
-    transform:translateY(15px);
-    filter:blur(4px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-    filter:none;
-  }
+    margin-bottom:15px;
+    color:#ead9df;
+    font-size:14px;
+    line-height:1.85;
 }
 
 .signature{
-  color:var(--pink);
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.8rem,7vw,2.5rem);
-  line-height:1.35;
-  margin-top:30px;
-  text-shadow:0 0 25px rgba(255,125,194,.18);
-  animation:signatureIn .9s 1.35s both;
+    margin-top:25px;
+    color:#ffb2ca;
+    font-size:15px;
+    line-height:1.8;
+    font-style:italic;
+    text-align:right;
 }
 
-@keyframes signatureIn{
-  from{
-    opacity:0;
-    transform:translateY(18px);
-  }
+/* =========================
+   NAVEGACIÓN
+========================= */
 
-  to{
-    opacity:1;
-    transform:none;
-  }
+.nav-buttons{
+    display:flex;
+    width:100%;
+    max-width:510px;
+    gap:9px;
+    margin-top:22px;
 }
 
-/* MUSICA */
-.music-box{
-  margin-top:38px;
-  padding:28px 20px;
-  border:1px solid var(--line);
-  border-radius:26px;
-  background:rgba(255,255,255,.035);
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-  animation:musicIn 1s 1.1s both;
+.nav-btn{
+    flex:1;
+    padding:14px 10px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:15px;
+    color:#fff;
+    background:rgba(255,255,255,.065);
+    font-size:13px;
+    transition:.25s;
 }
 
-@keyframes musicIn{
-  from{
-    opacity:0;
-    transform:translateY(35px) scale(.95);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
+.nav-btn:active{
+    transform:scale(.96);
 }
 
-.music-box::before{
-  content:"";
-  position:absolute;
-  width:250px;
-  height:250px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  border-radius:50%;
-  background:rgba(255,73,170,.08);
-  filter:blur(28px);
-  animation:musicGlow 3s ease-in-out infinite;
+.nav-btn.primary{
+    background:linear-gradient(135deg,#ff477e,#b8144b);
 }
 
-@keyframes musicGlow{
-  0%,100%{
-    transform:translate(-50%,-50%) scale(.75);
-    opacity:.5;
-  }
+/* =========================
+   MÚSICA
+========================= */
 
-  50%{
-    transform:translate(-50%,-50%) scale(1.25);
-    opacity:1;
-  }
+.music-card{
+    width:100%;
+    max-width:500px;
+    padding:31px 22px;
+    border:1px solid rgba(255,160,190,.17);
+    border-radius:25px;
+    background:rgba(255,255,255,.045);
+    backdrop-filter:blur(12px);
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+    animation:fadeUp .9s ease both;
 }
 
-.music-title{
-  position:relative;
-  z-index:2;
-  color:#f7ddea;
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.7rem,7vw,2.2rem);
-  line-height:1.2;
-  animation:musicBeat 2s ease-in-out infinite;
+.music-icon{
+    margin-bottom:17px;
+    font-size:48px;
+    animation:heartbeat 1.5s infinite;
 }
 
-@keyframes musicBeat{
-  0%,100%{
-    transform:scale(1);
-  }
+@keyframes heartbeat{
+    0%,100%{
+        transform:scale(1);
+    }
 
-  8%{
-    transform:scale(1.025);
-  }
+    15%{
+        transform:scale(1.14);
+    }
 
-  16%{
-    transform:scale(1);
-  }
+    30%{
+        transform:scale(1);
+    }
 
-  24%{
-    transform:scale(1.015);
-  }
-
-  32%{
-    transform:scale(1);
-  }
+    45%{
+        transform:scale(1.08);
+    }
 }
 
-.music-sub{
-  position:relative;
-  z-index:2;
-  color:rgba(255,255,255,.63);
-  font-size:.86rem;
-  line-height:1.7;
-  margin:16px 0 22px;
+.music-card p{
+    margin-bottom:23px;
+    color:#cdbbc2;
+    font-size:14px;
+    line-height:1.75;
 }
 
-.spotify-link{
-  position:relative;
-  z-index:3;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:58px;
-  padding:14px 20px;
-  border-radius:999px;
-  background:linear-gradient(
-    135deg,
-    #1ed760,
-    #13b953
-  );
-  color:#fff;
-  text-decoration:none;
-  font-weight:700;
-  font-size:.88rem;
-  box-shadow:0 10px 35px rgba(30,215,96,.25);
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-  animation:spotifyPulse 2.8s ease-in-out infinite;
+.spotify{
+    display:inline-block;
+    padding:15px 22px;
+    border-radius:50px;
+    color:#fff;
+    background:#1db954;
+    font-family:Arial,sans-serif;
+    font-size:14px;
+    font-weight:bold;
+    text-decoration:none;
+    box-shadow:0 0 25px rgba(29,185,84,.25);
+    transition:.3s;
 }
 
-@keyframes spotifyPulse{
-  0%,100%{
-    box-shadow:0 10px 28px rgba(30,215,96,.22);
-  }
-
-  50%{
-    box-shadow:0 10px 40px rgba(30,215,96,.5);
-  }
+.spotify:active{
+    transform:scale(.96);
 }
 
-.spotify-link:hover{
-  transform:translateY(-3px) scale(1.02);
-  box-shadow:0 16px 45px rgba(30,215,96,.42);
+/* =========================
+   RAZONES
+========================= */
+
+.reasons-heading{
+    margin-bottom:7px;
 }
 
-/* NAVEGACION */
-.nav-row{
-  display:flex;
-  gap:14px;
-  margin-top:34px;
-  position:relative;
-  z-index:4;
+.reason-counter{
+    margin-bottom:20px;
+    color:#cdaab7;
+    font-family:Arial,sans-serif;
+    font-size:12px;
 }
 
-.nav-row .btn{
-  flex:1;
-  min-width:0;
-  padding:15px 12px;
-}
-
-.btn-secondary{
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.13);
-  box-shadow:none;
-}
-
-.btn-secondary:hover{
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
-}
-
-.btn-disabled{
-  opacity:.35;
-  pointer-events:none;
-}
-
-/* TITULO RAZONES */
-.section-title{
-  text-align:center;
-  font-size:clamp(2.25rem,10vw,3.7rem);
-  color:#ffd7ea;
-  line-height:1;
-  margin-bottom:28px;
-  animation:fadeUp .8s .1s both;
-}
-
-.section-subtitle{
-  text-align:center;
-  color:rgba(255,255,255,.57);
-  font-size:.78rem;
-  line-height:1.6;
-  margin:-16px auto 28px;
-  max-width:430px;
-}
-
-/* RAZONES */
 .reason-card{
-  min-height:350px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  text-align:center;
-  padding:38px 24px 30px;
-  transition:
-    transform .35s ease,
-    opacity .35s ease;
+    position:relative;
+    display:flex;
+    width:100%;
+    max-width:510px;
+    min-height:270px;
+    padding:42px 23px;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    border:1px solid rgba(255,150,180,.2);
+    border-radius:26px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.025)
+        );
+    box-shadow:0 20px 65px rgba(0,0,0,.45);
+    animation:reasonEnter .7s cubic-bezier(.2,.8,.2,1);
 }
 
-.reason-card.reason-enter{
-  animation:reasonEnter .65s cubic-bezier(.16,1,.3,1) both;
+.reason-card::before{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    top:-70px;
+    right:-60px;
+    border-radius:50%;
+    background:rgba(255,40,100,.13);
+    filter:blur(30px);
 }
 
-.reason-card.reason-exit-left{
-  animation:reasonExitLeft .35s ease both;
-}
-
-.reason-card.reason-exit-right{
-  animation:reasonExitRight .35s ease both;
+.reason-card::after{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    bottom:-55px;
+    left:-40px;
+    border-radius:50%;
+    background:rgba(255,80,150,.08);
+    filter:blur(25px);
 }
 
 @keyframes reasonEnter{
-  from{
-    opacity:0;
-    transform:translateX(70px) scale(.9) rotate(1deg);
-    filter:blur(8px);
-  }
+    from{
+        opacity:0;
+        transform:translateX(90px) scale(.82);
+    }
 
-  65%{
-    opacity:1;
-    transform:translateX(-6px) scale(1.015);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-    filter:none;
-  }
-}
-
-@keyframes reasonExitLeft{
-  from{
-    opacity:1;
-    transform:none;
-  }
-
-  to{
-    opacity:0;
-    transform:translateX(-80px) scale(.93);
-    filter:blur(5px);
-  }
-}
-
-@keyframes reasonExitRight{
-  from{
-    opacity:1;
-    transform:none;
-  }
-
-  to{
-    opacity:0;
-    transform:translateX(80px) scale(.93);
-    filter:blur(5px);
-  }
-}
-
-.reason-label{
-  color:var(--pink);
-  text-transform:uppercase;
-  letter-spacing:.17em;
-  font-size:.7rem;
-  font-weight:700;
-  margin-bottom:14px;
+    to{
+        opacity:1;
+        transform:translateX(0) scale(1);
+    }
 }
 
 .reason-number{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(4rem,18vw,7rem);
-  line-height:.75;
-  font-weight:600;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(255,157,202,.7);
-  text-shadow:0 0 28px rgba(255,85,180,.2);
-  margin-bottom:24px;
+    position:absolute;
+    top:17px;
+    left:21px;
+    z-index:2;
+    color:#ff759e;
+    font-family:Arial,sans-serif;
+    font-size:12px;
 }
 
 .reason-text{
-  color:#f7edf4;
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.55rem,6.5vw,2.2rem);
-  line-height:1.28;
-  max-width:570px;
-  margin:0 auto;
+    position:relative;
+    z-index:2;
+    color:#fff2f6;
+    font-size:clamp(18px,5vw,24px);
+    line-height:1.65;
 }
 
-/* PROGRESO */
-.progress-wrap{
-  margin-top:30px;
-  position:relative;
-  z-index:3;
-}
-
-.progress-top{
-  display:flex;
-  justify-content:space-between;
-  color:rgba(255,255,255,.55);
-  font-size:.68rem;
-  margin-bottom:8px;
-}
+/* =========================
+   PROGRESO
+========================= */
 
 .progress{
-  width:100%;
-  height:6px;
-  border-radius:999px;
-  background:rgba(255,255,255,.08);
-  overflow:hidden;
+    width:100%;
+    max-width:510px;
+    height:5px;
+    margin-top:20px;
+    overflow:hidden;
+    border-radius:10px;
+    background:rgba(255,255,255,.1);
 }
 
 .progress-bar{
-  height:100%;
-  width:0%;
-  border-radius:999px;
-  background:linear-gradient(
-    90deg,
-    #ff4fb3,
-    #b477ff
-  );
-  box-shadow:0 0 15px rgba(255,79,179,.55);
-  transition:width .7s cubic-bezier(.2,.8,.2,1);
+    width:3.7%;
+    height:100%;
+    border-radius:10px;
+    background:linear-gradient(90deg,#ff477e,#ffabc6);
+    box-shadow:0 0 12px rgba(255,70,130,.8);
+    transition:width .55s ease;
 }
 
-/* FINAL */
-.final-card{
-  text-align:center;
-  padding-top:48px;
-  padding-bottom:38px;
+/* =========================
+   FINAL
+========================= */
+
+.final-screen{
+    position:relative;
 }
 
-.final-27-wrap{
-  position:relative;
-  display:inline-block;
-  margin:0 auto 25px;
+.final-screen .number27{
+    animation:final27 2s cubic-bezier(.2,.8,.2,1);
 }
 
-.final-27{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(8rem,42vw,17rem);
-  line-height:.72;
-  font-weight:600;
-  background:linear-gradient(
-    135deg,
-    #fff,
-    #ffafd6 45%,
-    #c68aff
-  );
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  filter:drop-shadow(0 0 25px rgba(255,100,190,.25));
-  animation:
-    finalNumber 1.5s cubic-bezier(.17,.84,.44,1) both,
-    finalPulse 3.2s 1.5s ease-in-out infinite;
-}
+@keyframes final27{
+    0%{
+        opacity:0;
+        transform:scale(.45);
+        filter:blur(15px);
+    }
 
-@keyframes finalNumber{
-  0%{
-    opacity:0;
-    transform:scale(.25);
-    filter:blur(20px);
-  }
+    55%{
+        opacity:1;
+        transform:scale(1.12);
+        filter:blur(0);
+    }
 
-  70%{
-    opacity:1;
-    transform:scale(1.12);
-  }
-
-  100%{
-    opacity:1;
-    transform:scale(1);
-  }
-}
-
-@keyframes finalPulse{
-  0%,100%{
-    filter:drop-shadow(0 0 22px rgba(255,100,190,.25));
-  }
-
-  50%{
-    filter:drop-shadow(0 0 50px rgba(255,100,190,.72));
-  }
-}
-
-.final-spark{
-  position:absolute;
-  font-size:1.1rem;
-  animation:finalSpark 2.3s ease-in-out infinite;
-}
-
-.final-spark:nth-child(1){
-  top:-15px;
-  left:-25px;
-  animation-delay:.2s;
-}
-
-.final-spark:nth-child(2){
-  top:15px;
-  right:-32px;
-  animation-delay:.8s;
-}
-
-.final-spark:nth-child(3){
-  bottom:-15px;
-  left:-5px;
-  animation-delay:1.3s;
-}
-
-.final-spark:nth-child(4){
-  bottom:8px;
-  right:-12px;
-  animation-delay:1.8s;
-}
-
-@keyframes finalSpark{
-  0%,100%{
-    opacity:.2;
-    transform:scale(.6) rotate(0);
-  }
-
-  50%{
-    opacity:1;
-    transform:scale(1.3) rotate(20deg);
-  }
-}
-
-.final-title{
-  color:var(--pink);
-  font-size:clamp(2rem,9vw,3.2rem);
-  margin-bottom:18px;
-  animation:fadeUp .9s .75s both;
+    100%{
+        transform:scale(1);
+    }
 }
 
 .final-message{
-  color:#f6e9f2;
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.5rem,6.3vw,2.15rem);
-  line-height:1.38;
-  max-width:590px;
-  margin:0 auto;
-  animation:fadeUp 1s 1s both;
+    max-width:500px;
+    margin-top:27px;
+    color:#f7dce5;
+    font-size:17px;
+    line-height:1.85;
+    animation:messageAppear 1.5s 1s both;
 }
 
-.final-buttons{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  margin-top:34px;
-  animation:fadeUp .9s 1.3s both;
+@keyframes messageAppear{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
 
-.footer-note{
-  margin-top:22px;
-  color:rgba(255,255,255,.35);
-  font-size:.68rem;
-  letter-spacing:.08em;
+.final-small{
+    margin-top:18px;
+    color:#ffb0c7;
+    font-size:14px;
+    animation:messageAppear 1.4s 1.3s both;
 }
 
-/* IPHONE */
-@media(max-width:430px){
+/* =========================
+   PARTÍCULAS
+========================= */
 
-  .screen{
-    padding:22px 13px 38px;
-  }
-
-  .card{
-    padding:30px 18px;
-    border-radius:27px;
-  }
-
-  .letter{
-    font-size:1.35rem;
-  }
-
-  .reason-card{
-    min-height:390px;
-    padding:35px 17px 25px;
-  }
-
-  .reason-text{
-    font-size:1.52rem;
-  }
-
-  .nav-row{
-    gap:9px;
-  }
-
-  .nav-row .btn{
-    font-size:.79rem;
-    padding:14px 9px;
-  }
-
-  .spotify-link{
-    font-size:.78rem;
-    padding:14px 12px;
-  }
+.particles{
+    position:absolute;
+    width:280px;
+    height:280px;
+    pointer-events:none;
 }
 
-/* ACCESIBILIDAD */
-@media(prefers-reduced-motion:reduce){
+.particle{
+    position:absolute;
+    color:#ff9abb;
+    text-shadow:0 0 10px rgba(255,130,170,.9);
+    animation:particleFloat 3s infinite ease-in-out;
+}
 
-  *,
-  *::before,
-  *::after{
-    animation-duration:.001ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
-    transition-duration:.001ms!important;
-  }
+@keyframes particleFloat{
+
+    0%,100%{
+        opacity:.2;
+        transform:translate(0,0) scale(.7);
+    }
+
+    50%{
+        opacity:1;
+        transform:
+            translate(var(--x),var(--y))
+            scale(1.25);
+    }
+}
+
+/* =========================
+   IPHONE
+========================= */
+
+@media(max-width:480px){
+
+    .screen{
+        padding:25px 16px;
+    }
+
+    .eyebrow{
+        font-size:9px;
+        letter-spacing:3px;
+    }
+
+    .number27{
+        font-size:clamp(115px,39vw,170px);
+    }
+
+    .letter{
+        padding:23px 18px;
+    }
+
+    .letter p{
+        font-size:13.5px;
+        line-height:1.8;
+    }
+
+    .signature{
+        font-size:14px;
+    }
+
+    .reason-card{
+        min-height:280px;
+        padding:43px 20px;
+    }
+
+    .reason-text{
+        font-size:18px;
+    }
+
+    .final-message{
+        font-size:16px;
+    }
+
+    .nav-btn{
+        font-size:12px;
+    }
+}
+
+/* PANTALLAS MUY PEQUEÑAS */
+
+@media(max-height:700px){
+
+    .screen{
+        padding-top:18px;
+        padding-bottom:18px;
+    }
+
+    .letter{
+        max-height:65vh;
+        overflow-y:auto;
+    }
+
+    .reason-card{
+        min-height:230px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div id="particles"></div>
+<div id="stars"></div>
+<div id="hearts"></div>
+
+<div id="app">
 
 <!-- =========================
      INICIO
 ========================= -->
 
-<section id="home" class="screen active">
+<section class="screen active" id="home">
 
-  <div class="container">
-
-    <div class="card center">
-
-      <span class="top-heart">❤️</span>
-
-      <div class="eyebrow">
-        Una pequeña sorpresa para ti
-      </div>
-
-      <h1>
-        Hoy celebramos a una mujer increíble
-      </h1>
-
-      <span class="hero-27">
-        27
-      </span>
-
-      <div class="subtitle">
-        años de una mujer increíble
-      </div>
-
-      <div class="small-note">
-        Preparé esto especialmente para ti.<br>
-        Abre la sorpresa cuando estés lista. ❤️
-      </div>
-
-      <button
-        class="btn btn-main"
-        onclick="goTo('letter')"
-      >
-        Abrir mi sorpresa ❤️
-      </button>
-
+    <div class="eyebrow">
+        ✦ UNA PEQUEÑA SORPRESA PARA TI ✦
     </div>
 
-  </div>
+    <div class="number27">
+        27
+    </div>
+
+    <div class="subtitle">
+        años de una mujer increíble
+    </div>
+
+    <p class="intro-text">
+        Hoy quiero regalarte algo que no puedo envolver,
+        pero que hice con todo mi corazón. ❤️
+    </p>
+
+    <button
+        class="main-button"
+        onclick="showScreen('letter')"
+    >
+        Abrir mi sorpresa ❤️
+    </button>
+
+    <div class="hint">
+        Toca el botón para comenzar
+    </div>
 
 </section>
 
@@ -1068,228 +758,213 @@ h1{
      CARTA
 ========================= -->
 
-<section id="letter" class="screen">
+<section class="screen" id="letter">
 
-  <div class="container">
+    <div class="section-label">
+        PARA LA MUJER QUE AMO
+    </div>
 
-    <div class="card letter-card">
+    <h1 class="title">
+        Feliz cumpleaños, mi niña ❤️
+    </h1>
 
-      <div class="eyebrow">
-        Para mi niña ❤️
-      </div>
-
-      <h2 class="letter-title">
-        Feliz cumpleaños, mi amor
-      </h2>
-
-      <div class="letter">
+    <div class="letter">
 
         <p>
-          Buenos días, mi niña hermosa. ❤️🎂
+            Buenos días, mi niña hermosa. ❤️🎂
         </p>
 
         <p>
-          Hoy no es un día cualquiera: hoy nació la mujer que se convirtió
-          en una de las personas más importantes y especiales de mi vida.
+            Hoy no es un día cualquiera: hoy nació la mujer
+            que se convirtió en una de las personas más
+            importantes y especiales de mi vida.
         </p>
 
         <p>
-          Feliz cumpleaños, mi amor. 🥺❤️
+            Feliz cumpleaños, mi amor. 🥺❤️
         </p>
 
         <p>
-          Aunque hoy no pueda estar a tu lado para abrazarte, besarte y decirte
-          frente a frente cuánto te amo, quiero que, desde que abras los ojos,
-          sientas todo mi cariño.
+            Aunque hoy no pueda estar a tu lado para abrazarte,
+            besarte y decirte frente a frente cuánto te amo,
+            quiero que, desde que abras los ojos, sientas
+            todo mi cariño.
         </p>
 
         <p>
-          Aunque esté lejos, mi corazón está contigo, pensando en ti y deseando
-          con toda el alma que tengas el cumpleaños más bonito.
+            Aunque esté lejos, mi corazón está contigo,
+            pensando en ti y deseando con toda el alma
+            que tengas el cumpleaños más bonito.
         </p>
 
         <p>
-          Espero que hoy sonrías muchísimo, que te consientan, que te llenen de
-          amor y que recibas todo lo hermoso que mereces.
+            Espero que hoy sonrías muchísimo, que te consientan,
+            que te llenen de amor y que recibas todo lo hermoso
+            que mereces.
         </p>
 
         <p>
-          Y sí… hoy tienes permitido ser todavía más consentida de lo normal.
-          😂❤️
+            Y sí… hoy tienes permitido ser todavía más
+            consentida de lo normal. 😂❤️
         </p>
 
         <p>
-          Te amo con todo mi corazón, mi niña. ❤️
+            Te amo con todo mi corazón, mi niña. ❤️
         </p>
 
-      </div>
-
-      <!-- FIRMA -->
-      <div class="signature">
-        Con todo mi amor,<br>
-        siempre tuyo, mi cielo. ❤️
-      </div>
-
-
-      <!-- =========================
-           MUSICA
-      ========================= -->
-
-      <div class="music-box">
-
-        <div class="music-title">
-          🎵 Esta canción me recuerda a ti
+        <div class="signature">
+            Con todo mi amor,<br>
+            siempre tuyo, mi cielo. ❤️
         </div>
-
-        <div class="music-sub">
-          La elegí especialmente para ti. ❤️<br>
-          Toca el botón y escucha la canción directamente
-          en Spotify.
-        </div>
-
-        <a
-          class="spotify-link"
-          href="https://open.spotify.com/track/2dMrr6HYgfrPRMOdHtEKKY?si=e5cG00kSRnCkDRLujtbNMw&utm_source=copy-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          🎧 Escuchar “Eres tú” en Spotify
-        </a>
-
-      </div>
-
-
-      <!-- NAVEGACION -->
-
-      <div class="nav-row">
-
-        <button
-          class="btn btn-secondary"
-          onclick="goTo('home')"
-        >
-          ← Atrás
-        </button>
-
-        <button
-          class="btn"
-          onclick="goTo('reasons')"
-        >
-          27 razones ❤️
-        </button>
-
-      </div>
 
     </div>
 
-  </div>
+    <div class="nav-buttons">
+
+        <button
+            class="nav-btn"
+            onclick="showScreen('home')"
+        >
+            ← Atrás
+        </button>
+
+        <button
+            class="nav-btn primary"
+            onclick="showScreen('music')"
+        >
+            Continuar ❤️
+        </button>
+
+    </div>
 
 </section>
 
 
 <!-- =========================
-     27 RAZONES
+     CANCIÓN
 ========================= -->
 
-<section id="reasons" class="screen">
+<section class="screen" id="music">
 
-  <div class="container">
+    <div class="music-card">
 
-    <div class="card">
-
-      <div class="eyebrow center">
-        Una por una, porque 27 no alcanzan ❤️
-      </div>
-
-      <h2 class="section-title">
-        27 razones por las que te amo ❤️
-      </h2>
-
-      <div class="section-subtitle">
-        Desliza por cada razón. Y recuerda:
-        podría hacer una lista mucho más larga.
-      </div>
-
-
-      <div
-        id="reasonCard"
-        class="reason-card reason-enter"
-      >
-
-        <div
-          class="reason-label"
-          id="reasonLabel"
-        >
-          Razón 1 de 27
+        <div class="music-icon">
+            🎵
         </div>
 
-        <div
-          class="reason-number"
-          id="reasonNumber"
-        >
-          01
+        <div class="section-label">
+            UNA CANCIÓN PARA TI
         </div>
 
-        <div
-          class="reason-text"
-          id="reasonText"
-        ></div>
+        <h1 class="title">
+            Esta canción me recuerda a ti
+        </h1>
 
-      </div>
+        <p>
+            La elegí especialmente para ti. ❤️
+            Toca el botón para escucharla directamente
+            en Spotify.
+        </p>
 
-
-      <!-- PROGRESO -->
-
-      <div class="progress-wrap">
-
-        <div class="progress-top">
-
-          <span>
-            Tu sorpresa
-          </span>
-
-          <span id="progressText">
-            1 / 27
-          </span>
-
-        </div>
-
-        <div class="progress">
-
-          <div
-            id="progressBar"
-            class="progress-bar"
-          ></div>
-
-        </div>
-
-      </div>
-
-
-      <!-- BOTONES -->
-
-      <div class="nav-row">
-
-        <button
-          id="backReason"
-          class="btn btn-secondary"
-          onclick="previousReason()"
+        <a
+            class="spotify"
+            href="https://open.spotify.com/track/2dMrr6HYgfrPRMOdHtEKKY?si=e5cG00kSRnCkDRLujtbNMw&utm_source=copy-link"
+            target="_blank"
+            rel="noopener noreferrer"
         >
-          ← Atrás
-        </button>
-
-        <button
-          id="nextReason"
-          class="btn"
-          onclick="nextReason()"
-        >
-          Siguiente →
-        </button>
-
-      </div>
+            🎧 Escuchar “Eres tú” en Spotify
+        </a>
 
     </div>
 
-  </div>
+    <div class="nav-buttons">
+
+        <button
+            class="nav-btn"
+            onclick="showScreen('letter')"
+        >
+            ← Atrás
+        </button>
+
+        <button
+            class="nav-btn primary"
+            onclick="startReasons()"
+        >
+            27 razones ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RAZONES
+========================= -->
+
+<section class="screen" id="reasons">
+
+    <div class="section-label">
+        27 RAZONES
+    </div>
+
+    <h1 class="title reasons-heading">
+        Por las que te amo ❤️
+    </h1>
+
+    <div
+        class="reason-counter"
+        id="counter"
+    >
+        Razón 1 de 27
+    </div>
+
+    <div
+        class="reason-card"
+        id="reasonCard"
+    >
+
+        <div
+            class="reason-number"
+            id="reasonNumber"
+        >
+            01
+        </div>
+
+        <div
+            class="reason-text"
+            id="reasonText"
+        ></div>
+
+    </div>
+
+    <div class="progress">
+
+        <div
+            class="progress-bar"
+            id="progressBar"
+        ></div>
+
+    </div>
+
+    <div class="nav-buttons">
+
+        <button
+            class="nav-btn"
+            onclick="previousReason()"
+        >
+            ← Atrás
+        </button>
+
+        <button
+            class="nav-btn primary"
+            id="nextButton"
+            onclick="nextReason()"
+        >
+            Siguiente →
+        </button>
+
+    </div>
 
 </section>
 
@@ -1298,580 +973,386 @@ h1{
      FINAL
 ========================= -->
 
-<section id="final" class="screen">
+<section
+    class="screen final-screen"
+    id="final"
+>
 
-  <div class="container">
+    <div class="particles">
 
-    <div class="card final-card">
-
-      <div class="eyebrow">
-        Y llegamos a la última ❤️
-      </div>
-
-
-      <div class="final-27-wrap">
-
-        <span class="final-spark">
-          ✦
-        </span>
-
-        <span class="final-spark">
-          ✨
-        </span>
-
-        <span class="final-spark">
-          ✧
-        </span>
-
-        <span class="final-spark">
-          💗
-        </span>
-
-        <div class="final-27">
-          27
-        </div>
-
-      </div>
-
-
-      <h2 class="final-title">
-        La razón más importante
-      </h2>
-
-
-      <p class="final-message">
-        Porque entre tantas personas en este mundo, tuve la suerte
-        de encontrarte a ti… y desde que llegaste a mi vida,
-        ya no quiero imaginarla sin ti. ❤️
-      </p>
-
-
-      <div class="final-buttons">
-
-        <button
-          class="btn btn-secondary"
-          onclick="goTo('reasons')"
+        <span
+            class="particle"
+            style="left:20%;top:20%;--x:-50px;--y:-30px;"
         >
-          ← Volver a las razones
-        </button>
+            ✦
+        </span>
 
-        <button
-          class="btn"
-          onclick="goTo('home')"
+        <span
+            class="particle"
+            style="left:70%;top:20%;--x:40px;--y:-50px;"
         >
-          Inicio ❤️
-        </button>
+            ✧
+        </span>
 
-      </div>
+        <span
+            class="particle"
+            style="left:15%;top:70%;--x:-40px;--y:30px;"
+        >
+            ✨
+        </span>
 
+        <span
+            class="particle"
+            style="left:80%;top:70%;--x:50px;--y:35px;"
+        >
+            ✦
+        </span>
 
-      <div class="footer-note">
-        HECHO CON TODO MI AMOR ❤️
-      </div>
+        <span
+            class="particle"
+            style="left:45%;top:10%;--x:0px;--y:-40px;"
+        >
+            ✧
+        </span>
+
+        <span
+            class="particle"
+            style="left:35%;top:85%;--x:-20px;--y:40px;"
+        >
+            ✦
+        </span>
 
     </div>
 
-  </div>
+    <div class="number27">
+        27
+    </div>
+
+    <div class="final-message">
+
+        Porque entre tantas personas en este mundo,
+        tuve la suerte de encontrarte a ti…
+        y desde que llegaste a mi vida,
+        ya no quiero imaginarla sin ti. ❤️
+
+    </div>
+
+    <div class="final-small">
+        Feliz cumpleaños, mi niña. ❤️
+    </div>
+
+    <div class="nav-buttons">
+
+        <button
+            class="nav-btn"
+            onclick="showScreen('reasons')"
+        >
+            ← Volver a las razones
+        </button>
+
+        <button
+            class="nav-btn primary"
+            onclick="showScreen('home')"
+        >
+            Inicio ❤️
+        </button>
+
+    </div>
 
 </section>
+
+</div>
 
 
 <script>
 
-/* ==========================================
-   27 RAZONES
-========================================== */
+/* =========================
+   ESTRELLAS
+========================= */
 
-const reasons = [
+const starsContainer =
+    document.getElementById("stars");
 
-  "Porque tienes una forma de ser que me enamora cada día más.",
+for(let i = 0; i < 100; i++){
 
-  "Porque tu sonrisa tiene la capacidad de alegrarme incluso cuando estamos lejos.",
+    const star =
+        document.createElement("div");
 
-  "Porque eres una mujer fuerte, y admiro muchísimo la manera en que enfrentas las cosas.",
+    star.className = "star";
 
-  "Porque tienes un corazón enorme y siempre estás pendiente de las personas que amas.",
+    star.style.left =
+        Math.random() * 100 + "%";
 
-  "Porque eres cariñosa conmigo y haces que la distancia parezca no existir.",
+    star.style.top =
+        Math.random() * 100 + "%";
 
-  "Porque me encanta escucharte hablar, incluso cuando sé que podrías pasar horas contándome cualquier cosa. 😂❤️",
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
 
-  "Porque eres alegre y tienes esa manera tan tuya de hacer que cualquier momento sea especial.",
+    star.style.animationDuration =
+        1.5 + Math.random() * 3 + "s";
 
-  "Porque eres perseverante y no te rindes fácilmente cuando realmente quieres algo.",
-
-  "Porque eres una mujer dedicada y admiro todo el esfuerzo que pones en las cosas que haces.",
-
-  "Porque me haces sentir querido, incluso estando a kilómetros de distancia.",
-
-  "Porque contigo puedo ser yo mismo y sentir que no tengo que fingir ser alguien diferente.",
-
-  "Porque me encanta compartir contigo nuestros momentos, desde jugar hasta simplemente quedarnos hablando.",
-
-  "Porque amo nuestras conversaciones, esas que empiezan hablando de una cosa y terminan completamente en otra. 😂",
-
-  "Porque tienes una manera muy especial de demostrarme tu cariño.",
-
-  "Porque admiro la mujer que eres y todo lo que has logrado superar.",
-
-  "Porque eres noble y tienes sentimientos muy bonitos.",
-
-  "Porque me encanta cuando te pones tierna conmigo. 🥺❤️",
-
-  "Porque aunque a veces tengas tus inseguridades, sigues siendo una mujer increíble y valiosa.",
-
-  "Porque me haces querer ser una mejor persona.",
-
-  "Porque contigo he creado recuerdos que, aun a distancia, significan muchísimo para mí.",
-
-  "Porque me encanta la confianza que hemos ido construyendo entre nosotros.",
-
-  "Porque llegaste a mi vida de una manera que jamás imaginé y terminaste ocupando un lugar que ahora no cambiaría por nada.",
-
-  "Porque me encanta llamarte mi niña, mi princesa, mi amor… y todos esos nombres que solamente tú tienes. ❤️",
-
-  "Porque me haces imaginar un futuro contigo y eso es algo que no me pasa con cualquiera.",
-
-  "Porque después de todo lo que hemos vivido juntos, sigo eligiéndote a ti.",
-
-  "Porque cada día encuentro una nueva razón para quererte todavía más.",
-
-  "Porque entre tantas personas en este mundo, tuve la suerte de encontrarte a ti… y desde que llegaste a mi vida, ya no quiero imaginarla sin ti. ❤️"
-
-];
-
-
-let currentReason = 0;
-let isAnimating = false;
-
-
-/* ==========================================
-   CAMBIO DE PANTALLA
-========================================== */
-
-function goTo(id){
-
-  document
-    .querySelectorAll('.screen')
-    .forEach(screen=>{
-      screen.classList.remove('active');
-    });
-
-
-  const target =
-    document.getElementById(id);
-
-
-  if(target){
-
-    target.classList.add('active');
-
-    window.scrollTo({
-      top:0,
-      behavior:'smooth'
-    });
-
-  }
-
-
-  if(id === 'reasons'){
-
-    currentReason = 0;
-
-    updateReason(false);
-
-  }
-
+    starsContainer.appendChild(star);
 }
 
 
-/* ==========================================
-   ACTUALIZAR RAZON
-========================================== */
-
-function updateReason(animated=true){
-
-  const card =
-    document.getElementById('reasonCard');
-
-  const label =
-    document.getElementById('reasonLabel');
-
-  const number =
-    document.getElementById('reasonNumber');
-
-  const text =
-    document.getElementById('reasonText');
-
-  const bar =
-    document.getElementById('progressBar');
-
-  const progressText =
-    document.getElementById('progressText');
-
-  const back =
-    document.getElementById('backReason');
-
-  const next =
-    document.getElementById('nextReason');
-
-
-  label.textContent =
-    `Razón ${currentReason + 1} de 27`;
-
-
-  number.textContent =
-    String(currentReason + 1).padStart(2,'0');
-
-
-  text.textContent =
-    reasons[currentReason];
-
-
-  bar.style.width =
-    `${((currentReason + 1) / reasons.length) * 100}%`;
-
-
-  progressText.textContent =
-    `${currentReason + 1} / ${reasons.length}`;
-
-
-  /*
-    En la primera razón,
-    Atrás vuelve a la carta.
-  */
-
-  back.classList.remove('btn-disabled');
-
-
-  if(currentReason === reasons.length - 1){
-
-    next.textContent =
-      "Ver mi mensaje final ❤️";
-
-  }else{
-
-    next.textContent =
-      "Siguiente →";
-
-  }
-
-
-  if(animated){
-
-    card.classList.remove('reason-enter');
-
-    void card.offsetWidth;
-
-    card.classList.add('reason-enter');
-
-  }
-
-}
-
-
-/* ==========================================
-   CAMBIAR RAZON CON ANIMACION
-========================================== */
-
-function changeReason(direction){
-
-  if(isAnimating) return;
-
-
-  /*
-    Si estamos en la razón 27
-    y pulsamos siguiente,
-    vamos al mensaje final.
-  */
-
-  if(
-    direction === 1 &&
-    currentReason === reasons.length - 1
-  ){
-
-    goTo('final');
-
-    return;
-
-  }
-
-
-  const nextIndex =
-    currentReason + direction;
-
-
-  if(
-    nextIndex < 0 ||
-    nextIndex >= reasons.length
-  ){
-
-    return;
-
-  }
-
-
-  isAnimating = true;
-
-
-  const card =
-    document.getElementById('reasonCard');
-
-
-  const exitClass =
-    direction === 1
-      ? 'reason-exit-left'
-      : 'reason-exit-right';
-
-
-  card.classList.remove('reason-enter');
-
-  card.classList.add(exitClass);
-
-
-  setTimeout(()=>{
-
-    currentReason =
-      nextIndex;
-
-    updateReason(false);
-
-
-    card.classList.remove(exitClass);
-
-    void card.offsetWidth;
-
-    card.classList.add('reason-enter');
-
-
-    setTimeout(()=>{
-
-      isAnimating = false;
-
-    },650);
-
-  },320);
-
-}
-
-
-function nextReason(){
-
-  changeReason(1);
-
-}
-
-
-function previousReason(){
-
-  /*
-    Desde la primera razón
-    regresamos a la carta.
-  */
-
-  if(currentReason === 0){
-
-    goTo('letter');
-
-    return;
-
-  }
-
-
-  changeReason(-1);
-
-}
-
-
-/* ==========================================
-   CORAZONES FLOTANDO
-========================================== */
-
-const particleLayer =
-  document.getElementById('particles');
-
-
-const heartSymbols = [
-  '❤️',
-  '💗',
-  '💕',
-  '💖',
-  '💘',
-  '♡'
-];
-
+/* =========================
+   CORAZONES FLOTANTES
+========================= */
+
+const heartsContainer =
+    document.getElementById("hearts");
 
 function createHeart(){
 
-  const heart =
-    document.createElement('span');
+    const heart =
+        document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.textContent =
+        Math.random() > .45 ? "❤️" : "♡";
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+    heart.style.fontSize =
+        12 + Math.random() * 18 + "px";
+
+    heart.style.animationDuration =
+        6 + Math.random() * 7 + "s";
+
+    heartsContainer.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    },15000);
+}
+
+setInterval(createHeart,650);
 
 
-  heart.className =
-    'heart-particle';
+/* =========================
+   CAMBIO DE PANTALLA
+========================= */
 
+function showScreen(id){
 
-  heart.textContent =
-    heartSymbols[
-      Math.floor(
-        Math.random() * heartSymbols.length
-      )
-    ];
+    const screens =
+        document.querySelectorAll(".screen");
 
+    screens.forEach(screen => {
+        screen.classList.remove("active");
+    });
 
-  const size =
-    12 + Math.random() * 18;
+    const target =
+        document.getElementById(id);
 
+    target.classList.add("active");
 
-  const duration =
-    7 + Math.random() * 8;
-
-
-  const left =
-    Math.random() * 100;
-
-
-  const drift =
-    (Math.random() * 160 - 80) + 'px';
-
-
-  heart.style.left =
-    left + '%';
-
-
-  heart.style.fontSize =
-    size + 'px';
-
-
-  heart.style.animationDuration =
-    duration + 's';
-
-
-  heart.style.setProperty(
-    '--drift',
-    drift
-  );
-
-
-  particleLayer.appendChild(heart);
-
-
-  setTimeout(
-    ()=>heart.remove(),
-    (duration + 1) * 1000
-  );
-
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
 
 
-/*
-  Corazones nuevos continuamente.
-*/
+/* =========================
+   27 RAZONES
+========================= */
 
-setInterval(
-  createHeart,
-  520
-);
+const reasons = [
+
+"Porque tienes una forma de ser que me enamora cada día más.",
+
+"Porque tu sonrisa tiene la capacidad de alegrarme incluso cuando estamos lejos.",
+
+"Porque eres una mujer fuerte, y admiro muchísimo la manera en que enfrentas las cosas.",
+
+"Porque tienes un corazón enorme y siempre estás pendiente de las personas que amas.",
+
+"Porque eres cariñosa conmigo y haces que la distancia parezca no existir.",
+
+"Porque me encanta escucharte hablar, incluso cuando sé que podrías pasar horas contándome cualquier cosa. 😂❤️",
+
+"Porque eres alegre y tienes esa manera tan tuya de hacer que cualquier momento sea especial.",
+
+"Porque eres perseverante y no te rindes fácilmente cuando realmente quieres algo.",
+
+"Porque eres una mujer dedicada y admiro todo el esfuerzo que pones en las cosas que haces.",
+
+"Porque me haces sentir querido, incluso estando a kilómetros de distancia.",
+
+"Porque contigo puedo ser yo mismo y sentir que no tengo que fingir ser alguien diferente.",
+
+"Porque me encanta compartir contigo nuestros momentos, desde jugar hasta simplemente quedarnos hablando.",
+
+"Porque amo nuestras conversaciones, esas que empiezan hablando de una cosa y terminan completamente en otra. 😂",
+
+"Porque tienes una manera muy especial de demostrarme tu cariño.",
+
+"Porque admiro la mujer que eres y todo lo que has logrado superar.",
+
+"Porque eres noble y tienes sentimientos muy bonitos.",
+
+"Porque me encanta cuando te pones tierna conmigo. 🥺❤️",
+
+"Porque aunque a veces tengas tus inseguridades, sigues siendo una mujer increíble y valiosa.",
+
+"Porque me haces querer ser una mejor persona.",
+
+"Porque contigo he creado recuerdos que, aun a distancia, significan muchísimo para mí.",
+
+"Porque me encanta la confianza que hemos ido construyendo entre nosotros.",
+
+"Porque llegaste a mi vida de una manera que jamás imaginé y terminaste ocupando un lugar que ahora no cambiaría por nada.",
+
+"Porque me encanta llamarte mi niña, mi princesa, mi amor… y todos esos nombres que solamente tú tienes. ❤️",
+
+"Porque me haces imaginar un futuro contigo y eso es algo que no me pasa con cualquiera.",
+
+"Porque después de todo lo que hemos vivido juntos, sigo eligiéndote a ti.",
+
+"Porque cada día encuentro una nueva razón para quererte todavía más.",
+
+"Porque entre tantas personas en este mundo, tuve la suerte de encontrarte a ti… y desde que llegaste a mi vida, ya no quiero imaginarla sin ti. ❤️"
+
+];
+
+let currentReason = 0;
 
 
-/*
-  Llenado inicial.
-*/
+/* =========================
+   INICIAR RAZONES
+========================= */
 
-for(let i=0;i<9;i++){
+function startReasons(){
 
-  setTimeout(
-    createHeart,
-    i * 250
-  );
+    currentReason = 0;
 
+    showReason();
+
+    showScreen("reasons");
 }
 
 
-/* ==========================================
-   ESTRELLAS / BRILLOS
-========================================== */
+/* =========================
+   MOSTRAR RAZÓN
+========================= */
 
-function createSpark(){
+function showReason(){
 
-  const spark =
-    document.createElement('span');
+    const card =
+        document.getElementById("reasonCard");
 
+    /*
+       Reiniciamos la animación
+       para que cada tarjeta vuelva
+       a entrar con movimiento.
+    */
 
-  spark.className =
-    'spark';
+    card.style.animation = "none";
 
+    void card.offsetWidth;
 
-  spark.style.left =
-    Math.random() * 100 + '%';
+    card.style.animation =
+        "reasonEnter .7s cubic-bezier(.2,.8,.2,1)";
 
+    document.getElementById("reasonNumber")
+        .textContent =
+        String(currentReason + 1).padStart(2,"0");
 
-  spark.style.top =
-    Math.random() * 100 + '%';
+    document.getElementById("counter")
+        .textContent =
+        `Razón ${currentReason + 1} de 27`;
 
+    document.getElementById("reasonText")
+        .textContent =
+        reasons[currentReason];
 
-  spark.style.animationDelay =
-    Math.random() * 2.5 + 's';
+    const percentage =
+        ((currentReason + 1) / 27) * 100;
 
+    document.getElementById("progressBar")
+        .style.width =
+        percentage + "%";
 
-  spark.style.animationDuration =
-    (1.7 + Math.random() * 2.2) + 's';
+    const nextButton =
+        document.getElementById("nextButton");
 
+    if(currentReason === 26){
 
-  particleLayer.appendChild(spark);
+        nextButton.textContent =
+            "Ver mi mensaje final ❤️";
 
+    }else{
 
-  setTimeout(
-    ()=>spark.remove(),
-    8000
-  );
-
+        nextButton.textContent =
+            "Siguiente →";
+    }
 }
 
 
-for(let i=0;i<22;i++){
+/* =========================
+   SIGUIENTE
+========================= */
 
-  setTimeout(
-    createSpark,
-    i * 180
-  );
+function nextReason(){
 
+    if(currentReason < 26){
+
+        currentReason++;
+
+        showReason();
+
+    }else{
+
+        showScreen("final");
+    }
 }
 
 
-setInterval(
-  createSpark,
-  550
-);
+/* =========================
+   ATRÁS
+========================= */
+
+function previousReason(){
+
+    if(currentReason > 0){
+
+        currentReason--;
+
+        showReason();
+
+    }else{
+
+        showScreen("music");
+    }
+}
 
 
-/* ==========================================
-   TECLADO
-========================================== */
+/* =========================
+   SOPORTE TECLADO
+========================= */
 
-document.addEventListener(
-  'keydown',
-  (e)=>{
+document.addEventListener("keydown",function(event){
 
-    if(
-      document
-        .getElementById('reasons')
-        .classList
-        .contains('active')
-    ){
+    const reasonsScreen =
+        document.getElementById("reasons");
 
-      if(e.key === 'ArrowRight'){
-        nextReason();
-      }
-
-      if(e.key === 'ArrowLeft'){
-        previousReason();
-      }
-
+    if(!reasonsScreen.classList.contains("active")){
+        return;
     }
 
-  }
-);
+    if(event.key === "ArrowRight"){
+        nextReason();
+    }
+
+    if(event.key === "ArrowLeft"){
+        previousReason();
+    }
+
+});
 
 </script>
 
