@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08080d">
+  <title>Cumpleaños de mi niña ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 50% 15%, rgba(145, 55, 90, 0.22), transparent 35%),
+        linear-gradient(180deg, #08080d 0%, #110b13 50%, #08080d 100%);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .screen {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ESTRELLAS */
+
+    .stars,
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.15;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.9;
+        transform: scale(1.8);
+      }
+    }
+
+    /* PORTADA */
+
+    .intro {
+      text-align: center;
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .small-text {
+      color: #d9a9bd;
+      font-size: 15px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+
+    .intro h1 {
+      font-size: clamp(42px, 12vw, 76px);
+      line-height: 0.95;
+      font-weight: normal;
+      margin-bottom: 22px;
+      text-shadow: 0 0 30px rgba(255, 150, 190, 0.25);
+    }
+
+    .intro h1 span {
+      display: block;
+      color: #e8a9c1;
+      font-style: italic;
+    }
+
+    .intro p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #d4cbd0;
+      margin-bottom: 38px;
+    }
+
+    .main-button {
+      border: 1px solid rgba(255, 190, 215, 0.45);
+      background: linear-gradient(135deg, #a83f68, #6e294b);
+      color: white;
+      padding: 17px 30px;
+      border-radius: 50px;
+      font-size: 17px;
+      cursor: pointer;
+      box-shadow: 0 10px 35px rgba(150, 40, 90, 0.25);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .main-button:active {
+      transform: scale(0.96);
+    }
+
+    /* CONTENIDO */
+
+    .content {
+      width: 100%;
+      max-width: 650px;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .section-label {
+      color: #d79bb4;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    .content h2 {
+      font-size: clamp(34px, 9vw, 55px);
+      font-weight: normal;
+      margin-bottom: 22px;
+    }
+
+    .letter {
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 200, 220, 0.12);
+      border-radius: 24px;
+      padding: 28px 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 70px rgba(0,0,0,0.25);
+    }
+
+    .letter p {
+      color: #e4dce0;
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      margin-top: 28px;
+      color: #e8a9c1 !important;
+      font-style: italic;
+      font-size: 21px !important;
+    }
+
+    /* RAZONES */
+
+    .reason-card {
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 35px 25px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,200,220,0.14);
+      border-radius: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 70px rgba(0,0,0,0.3);
+    }
+
+    .reason-number {
+      color: #d88cab;
+      font-size: 17px;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
+
+    .reason-text {
+      font-size: clamp(25px, 6vw, 38px);
+      line-height: 1.35;
+      font-style: italic;
+      margin-bottom: 35px;
+    }
+
+    .progress {
+      color: #9e9299;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .next-button {
+      border: 1px solid rgba(255, 190, 215, 0.3);
+      background: rgba(180, 70, 110, 0.2);
+      color: #fff;
+      padding: 13px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* FINAL */
+
+    .final-card {
+      text-align: center;
+      max-width: 620px;
+    }
+
+    .birthday-number {
+      font-size: clamp(80px, 25vw, 150px);
+      color: #e5a1bb;
+      line-height: 0.9;
+      text-shadow: 0 0 45px rgba(220,100,150,0.3);
+      margin-bottom: 20px;
+    }
+
+    .final-card h2 {
+      margin-bottom: 25px;
+    }
+
+    .final-card p {
+      font-size: 19px;
+      line-height: 1.8;
+      color: #ddd2d8;
+      margin-bottom: 20px;
+    }
+
+    .final-love {
+      color: #ebaac3 !important;
+      font-size: 25px !important;
+      font-style: italic;
+      margin-top: 35px;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      font-size: 20px;
+      animation: floatHeart linear forwards;
+      opacity: 0;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) scale(0.7) rotate(0deg);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 0.8;
+      }
+
+      85% {
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: translateY(-110vh) scale(1.4) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SPOTIFY */
+
+    #spotifyContainer {
+      position: fixed;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      z-index: 20;
+      display: none;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    #spotifyContainer iframe {
+      width: 100%;
+      height: 80px;
+      border-radius: 12px;
+      border: 0;
+    }
+
+    @media (min-width: 700px) {
+      #spotifyContainer {
+        left: auto;
+        right: 25px;
+        width: 400px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stars" id="stars"></div>
+  <div class="hearts" id="hearts"></div>
+
+  <!-- PANTALLA DE INICIO -->
+
+  <section class="screen" id="introScreen">
+    <div class="intro">
+
+      <div class="small-text">
+        Una sorpresa para ti ❤️
+      </div>
+
+      <h1>
+        Feliz cumpleaños
+        <span>mi niña</span>
+      </h1>
+
+      <p>
+        Hoy quiero regalarte algo diferente...
+        algo hecho especialmente para ti.
+      </p>
+
+      <button class="main-button" id="startButton">
+        Abrir mi sorpresa ❤️
+      </button>
+
+    </div>
+  </section>
+
+
+  <!-- CARTA -->
+
+  <section class="screen hidden" id="letterScreen">
+
+    <div class="content fade-in">
+
+      <div class="section-label">
+        Para la mujer que amo
+      </div>
+
+      <h2>Feliz cumpleaños, mi amor ❤️</h2>
+
+      <div class="letter">
+
+        <p>
+          Hoy es un día especial porque nació una mujer
+          que con el tiempo se convirtió en alguien
+          demasiado importante para mí.
+        </p>
+
+        <p>
+          Aunque la distancia nos separe físicamente,
+          quiero que sepas que eso nunca ha impedido
+          que estés presente en mi corazón.
+        </p>
+
+        <p>
+          Hoy cumples <strong>27 años</strong>,
+          y quiero aprovechar este día para recordarte
+          algunas de las muchísimas razones por las que
+          te amo.
+        </p>
+
+        <p class="signature">
+          Así que... aquí comienza mi pequeño regalo para ti. ❤️
+        </p>
+
+        <button class="main-button" onclick="startReasons()">
+          Quiero conocerlas ❤️
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RAZONES -->
+
+  <section class="screen hidden" id="reasonsScreen">
+
+    <div class="content">
+
+      <div class="section-label">
+        27 razones
+      </div>
+
+      <div class="reason-card fade-in">
+
+        <div class="reason-number" id="reasonNumber">
+          Razón #1
+        </div>
+
+        <div class="reason-text" id="reasonText"></div>
+
+        <div class="progress" id="progress">
+          1 de 27
+        </div>
+
+        <button class="next-button" id="nextButton">
+          Siguiente ❤️
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL -->
+
+  <section class="screen hidden" id="finalScreen">
+
+    <div class="final-card fade-in">
+
+      <div class="section-label">
+        Y llegamos al final...
+      </div>
+
+      <div class="birthday-number">
+        27
+      </div>
+
+      <h2>
+        La razón más importante
+      </h2>
+
+      <p>
+        Porque entre tantas personas en este mundo,
+        tuve la suerte de encontrarte a ti.
+      </p>
+
+      <p>
+        Y desde que llegaste a mi vida,
+        ya no quiero imaginarla sin ti.
+      </p>
+
+      <p>
+        No importa la distancia, los kilómetros
+        ni el tiempo que tengamos que esperar.
+        Si eres tú, vale la pena.
+      </p>
+
+      <p class="final-love">
+        Te amo, mi niña. ❤️
+      </p>
+
+      <p>
+        Feliz cumpleaños, mi hermosa mujer.
+        Que tus 27 años estén llenos de momentos
+        maravillosos y que pueda seguir formando
+        parte de muchos de ellos.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- SPOTIFY -->
+
+  <div id="spotifyContainer"></div>
+
+
+  <script>
+
+    /* =========================================
+       ESTRELLAS
+    ========================================= */
+
+    const stars = document.getElementById("stars");
+
+    for (let i = 0; i < 90; i++) {
+
+      const star = document.createElement("div");
+
+      star.className = "star";
+
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+      star.style.animationDelay = Math.random() * 3 + "s";
+
+      stars.appendChild(star);
+    }
+
+
+    /* =========================================
+       27 RAZONES
+    ========================================= */
+
+    const reasons = [
+
+      "Porque tienes una forma de ser que me enamora cada día más.",
+
+      "Porque tu sonrisa puede cambiar completamente mi día.",
+
+      "Porque eres una mujer fuerte, incluso cuando tú misma no te das cuenta.",
+
+      "Porque tienes un corazón enorme.",
+
+      "Porque eres cariñosa de una manera que hace sentir especial.",
+
+      "Porque eres atenta con las personas que amas.",
+
+      "Porque admiro la manera en que luchas por lo que quieres.",
+
+      "Porque nunca dejas de intentar salir adelante.",
+
+      "Porque contigo puedo ser yo mismo.",
+
+      "Porque me haces sentir querido.",
+
+      "Porque me encanta escucharte hablar de cualquier cosa.",
+
+      "Porque incluso a la distancia logras hacerme sentir cerca de ti.",
+
+      "Porque cada conversación contigo puede convertirse en uno de mis momentos favoritos.",
+
+      "Porque me gusta compartir contigo hasta las cosas más sencillas.",
+
+      "Porque tienes una manera muy tuya de hacerme sonreír.",
+
+      "Porque eres una mujer con la que puedo imaginar un futuro.",
+
+      "Porque admiro tu lado maternal y la forma en que cuidas a quienes amas.",
+
+      "Porque eres perseverante.",
+
+      "Porque eres noble.",
+
+      "Porque detrás de esa mujer fuerte también existe una mujer sensible que merece sentirse amada.",
+
+      "Porque me haces querer ser una mejor persona.",
+
+      "Porque contigo he creado recuerdos que guardo con muchísimo cariño.",
+
+      "Porque nuestros momentos juntos significan muchísimo para mí.",
+
+      "Porque me encanta que podamos compartir videojuegos, anime, películas y tantas cosas.",
+
+      "Porque cada día encuentro una nueva razón para elegirte.",
+
+      "Porque eres tú, y no quiero que seas nadie más.",
+
+      "Porque entre tantas personas en este mundo, tuve la suerte de encontrarte a ti... y desde que llegaste a mi vida, ya no quiero imaginarla sin ti."
+    ];
+
+
+    let currentReason = 0;
+
+
+    /* =========================================
+       BOTÓN INICIAL
+       INICIA LA EXPERIENCIA + SPOTIFY
+    ========================================= */
+
+    const startButton = document.getElementById("startButton");
+
+    startButton.addEventListener("click", function () {
+
+      /*
+       * Cargamos Spotify DESPUÉS del clic.
+       * Esto permite que la acción del usuario
+       * sea la que inicia la experiencia.
+       */
+
+      const spotify = document.getElementById("spotifyContainer");
+
+      spotify.innerHTML = `
+        <iframe
+          src="https://open.spotify.com/embed/track/2dMrr6HYgfrPRMOdHtEKKY?utm_source=generator&theme=0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      `;
+
+      spotify.style.display = "block";
+
+      document.getElementById("introScreen").classList.add("hidden");
+
+      document.getElementById("letterScreen").classList.remove("hidden");
+
+      createHearts();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    });
+
+
+    /* =========================================
+       COMENZAR RAZONES
+    ========================================= */
+
+    function startReasons() {
+
+      document.getElementById("letterScreen").classList.add("hidden");
+
+      document.getElementById("reasonsScreen").classList.remove("hidden");
+
+      currentReason = 0;
+
+      showReason();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+
+    /* =========================================
+       MOSTRAR RAZÓN
+    ========================================= */
+
+    function showReason() {
+
+      const number = document.getElementById("reasonNumber");
+      const text = document.getElementById("reasonText");
+      const progress = document.getElementById("progress");
+      const button = document.getElementById("nextButton");
+
+      number.textContent = "Razón #" + (currentReason + 1);
+
+      text.textContent = reasons[currentReason];
+
+      progress.textContent = (currentReason + 1) + " de 27";
+
+      if (currentReason === reasons.length - 1) {
+
+        button.textContent = "Ver mi última sorpresa ❤️";
+
+      } else {
+
+        button.textContent = "Siguiente ❤️";
+
+      }
+
+      const card = document.querySelector(".reason-card");
+
+      card.classList.remove("fade-in");
+
+      void card.offsetWidth;
+
+      card.classList.add("fade-in");
+    }
+
+
+    /* =========================================
+       SIGUIENTE RAZÓN
+    ========================================= */
+
+    document.getElementById("nextButton").addEventListener("click", function () {
+
+      if (currentReason < reasons.length - 1) {
+
+        currentReason++;
+
+        showReason();
+
+        createHearts();
+
+      } else {
+
+        document.getElementById("reasonsScreen").classList.add("hidden");
+
+        document.getElementById("finalScreen").classList.remove("hidden");
+
+        createHearts(35);
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      }
+
+    });
+
+
+    /* =========================================
+       CORAZONES
+    ========================================= */
+
+    function createHearts(amount = 12) {
+
+      const container = document.getElementById("hearts");
+
+      for (let i = 0; i < amount; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.textContent = Math.random() > 0.5 ? "♥" : "♡";
+
+        heart.style.left = Math.random() * 100 + "%";
+
+        heart.style.fontSize =
+          (14 + Math.random() * 20) + "px";
+
+        heart.style.animationDuration =
+          (5 + Math.random() * 7) + "s";
+
+        heart.style.animationDelay =
+          Math.random() * 2 + "s";
+
+        container.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 14000);
+      }
+    }
+
+  </script>
+
+</body>
+</html>
